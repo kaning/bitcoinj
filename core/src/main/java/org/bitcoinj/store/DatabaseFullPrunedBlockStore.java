@@ -96,7 +96,7 @@ public abstract class DatabaseFullPrunedBlockStore implements FullPrunedBlockSto
     private static final String UPDATE_SETTINGS_SQL                             = "UPDATE settings SET value = ? WHERE name = ?";
 
     private static final String SELECT_HEADERS_SQL                              = "SELECT chainwork, height, header, wasundoable FROM headers WHERE hash = ?";
-    private static final String INSERT_HEADERS_SQL                              = "INSERT INTO headers(hash, chainwork, height, header, wasundoable) VALUES(?, ?, ?, ?, ?)";
+    private static final String INSERT_HEADERS_SQL                              = "INSERT INTO headers(hash, chainwork, height, header, wasundoable) VALUES(?, ?, ?, ?, ?) ON CONFLICT (hash) DO NOTHING";
     private static final String UPDATE_HEADERS_SQL                              = "UPDATE headers SET wasundoable=? WHERE hash=?";
 
     private static final String SELECT_UNDOABLEBLOCKS_SQL                       = "SELECT txoutchanges, transactions FROM undoableblocks WHERE hash = ?";
